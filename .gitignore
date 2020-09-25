@@ -1,5 +1,6 @@
 #idea
 **/.idea/modules
+**/.idea
 **/.idea/libraries
 **/.idea/httpRequests
 **/.idea/workspace.xml
@@ -14,10 +15,6 @@
 #mac
 **/.DS_Store
 
-#other
-CentOS7.ova
-windows2012.vdi
-ТитульныйЛист.docx
-windowsPassword.txt
-centosLoginPassword.txt
-vim-command.jpeg
+#gradle
+**/build
+.gradle
