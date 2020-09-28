@@ -12,4 +12,13 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    testImplementation("junit:junit:4.13")
+}
+
+tasks.test {
+    useJUnit()
+
+    maxParallelForks = 4
+    maxHeapSize = "2G"
+    reports.html.isEnabled = false
 }
