@@ -22,4 +22,8 @@ public class DatabaseUtils {
             statement.executeUpdate(sqlQuery);
         }
     }
+
+    static String wrapResult(String res) {
+        return START_HTML_WRAPPER + res + END_HTML_WRAPPER;
+    }
 }

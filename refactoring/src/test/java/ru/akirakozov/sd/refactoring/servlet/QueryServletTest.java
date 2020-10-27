@@ -140,9 +140,4 @@ public class QueryServletTest {
 
         Assert.assertEquals(wrapResult("Number of products: \n3\n"), result);
     }
-
-
-    static String wrapResult(String res) {
-        return START_HTML_WRAPPER + res + END_HTML_WRAPPER;
-    }
 }
