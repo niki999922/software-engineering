@@ -14,8 +14,7 @@ public class HTMLBuilder {
     }
 
     HTMLBuilder add(String str) {
-        add(str, "\n");
-        return this;
+        return add(str, "\n");
     }
 
     HTMLBuilder add(int value, String lastCharacter) {
@@ -24,8 +23,7 @@ public class HTMLBuilder {
     }
 
     HTMLBuilder add(int value) {
-        add(value, "\n");
-        return this;
+        return add(value, "\n");
     }
 
     @Override
