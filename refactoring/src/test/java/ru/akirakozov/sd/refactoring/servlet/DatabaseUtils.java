@@ -9,14 +9,14 @@ public class DatabaseUtils {
     protected static final String END_HTML_WRAPPER = "</body></html>\n";
     private static final String DATA_BASE_NAME = "jdbc:sqlite:test.db";
 
-    public static void clear() throws SQLException {
+    static void clear() throws SQLException {
         try (Statement statement = DriverManager.getConnection(DATA_BASE_NAME).createStatement()) {
             String sqlQuery = "DELETE FROM PRODUCT";
             statement.executeUpdate(sqlQuery);
         }
     }
 
-    public static void add(String name, int price) throws SQLException {
+    static void add(String name, int price) throws SQLException {
         try (Statement statement = DriverManager.getConnection(DATA_BASE_NAME).createStatement()) {
             String sqlQuery = "INSERT INTO PRODUCT (NAME, PRICE) VALUES (\"" + name + "\"," + price + ")";
             statement.executeUpdate(sqlQuery);
