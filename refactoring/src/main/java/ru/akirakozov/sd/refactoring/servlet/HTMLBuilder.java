@@ -13,7 +13,7 @@ public class HTMLBuilder {
         return this;
     }
 
-    HTMLBuilder add(String str) {
+    public HTMLBuilder add(String str) {
         return add(str, "\n");
     }
 
@@ -22,7 +22,7 @@ public class HTMLBuilder {
         return this;
     }
 
-    HTMLBuilder add(int value) {
+    public HTMLBuilder add(int value) {
         return add(value, "\n");
     }
 
