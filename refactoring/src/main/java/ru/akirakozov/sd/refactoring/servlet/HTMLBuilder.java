@@ -8,20 +8,24 @@ public class HTMLBuilder {
 
     private final StringBuilder dom = new StringBuilder();
 
-    void add(String str, String lastCharacter) {
+    HTMLBuilder add(String str, String lastCharacter) {
         dom.append(str).append(lastCharacter);
+        return this;
     }
 
-    void add(String str) {
+    HTMLBuilder add(String str) {
         add(str, "\n");
+        return this;
     }
 
-    void add(int value, String lastCharacter) {
+    HTMLBuilder add(int value, String lastCharacter) {
         dom.append(value).append(lastCharacter);
+        return this;
     }
 
-    void add(int value) {
+    HTMLBuilder add(int value) {
         add(value, "\n");
+        return this;
     }
 
     @Override
