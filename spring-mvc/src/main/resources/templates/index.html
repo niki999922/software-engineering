@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <head>
+    <link th:href="@{styles/index.css}" rel="stylesheet" />
+    <title>TODO List</title>
+  </head>
+  <body>
+  <div class="boxes">
+    <div class="boxes__element">
+      <h3>New category for TODO List</h3>
+        <form action="/add-list" method="POST" th:object="${listDto}">
+          <div class="input-box">
+            <div>Title</div>
+            <input class="input-box-style" th:field="*{description}" type="text"/>
+          </div>
+        <input type="submit" value="Add">
+        </form>
+    </div>
+    <div class="boxes__element">
+  <h3>Add new Task</h3>
+  <form action="/add-item" method="POST" th:object="${itemDto}">
+          <div class="input-box">
+            <div>Description</div>
+            <select class="input-select-box-style" th:field="*{listId}">
+              <option th:each="i : ${lists}" th:selected="${i.id==0}" th:text="${i.description}"
+                      th:value="${i.id}"></option>
+              </select>
+            <input class="input-box-style" th:field="*{description}" type="text"/>
+          </div>
+     <input type="submit" value="Add">
+  </form>
+  </div>
+    <div class="boxes__element">
+  <h3 class="boxes">All tasks</h3>
+  <th:block th:each="list : ${lists}">
+    <div class="category-list">
+      <h4 th:text="${list.description}"></h4>
+      <a th:href="@{'/deleteList/' + ${list.id}}">DeleteList</a>
+      <table>
+          <tr th:each="item : ${list.items}">
+              <td th:if="${item.isDone == false}" th:text="${item.description}"></td>
+              <td th:if="${item.isDone == true}"><del th:text="${item.description}"></del></td>
+              <td>
+                  <a th:href="@{'/done/' + ${item.listId} + '/' + ${item.id}}" th:if="${item.isDone == false}">Done</a>
+                  <a th:href="@{'/delete/' + ${item.listId} + '/' + ${item.id}}">Delete</a>
+              </td>
+              </tr>
+      </table>
+    </div>
+  </th:block>
+  </div>
+  </div>
+  </body>
+</html>
