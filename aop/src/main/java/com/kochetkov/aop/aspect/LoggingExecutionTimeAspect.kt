@@ -3,15 +3,13 @@ package com.kochetkov.aop.aspect
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
-import java.util.ArrayList
-import java.util.HashMap
-import kotlin.Throws
+import java.util.*
 
 @Aspect
 class LoggingExecutionTimeAspect {
     private val executions: MutableMap<String, MutableList<Long>> = HashMap()
+
     @Around("execution(* com.kochetkov.aop.domain..*.*(..))")
-    @Throws(Throwable::class)
     fun logExecutionTime(joinPoint: ProceedingJoinPoint): Any {
         val startNs = System.nanoTime()
         val methodName = String.format("%s.%s", joinPoint.signature.declaringTypeName, joinPoint.signature.name)
@@ -25,14 +23,11 @@ class LoggingExecutionTimeAspect {
 
     fun printResults() {
         val tree = Tree("")
-        for ((name, list) in executions) {
+        executions.forEach { (name, list) ->
             val parts = name.split(".").toMutableList()
-            val total = list.size
-            var sum = 0L
-            for (el in list) {
-                sum += el
-            }
-            val avg = sum / total
+            val totalCalls = list.size
+            val totalTime = list.sum()
+            val avgTimeOnAction = totalTime / totalCalls
             var curTree = tree
             var index = 0
             parts.forEachIndexed { ind, part ->
@@ -47,7 +42,7 @@ class LoggingExecutionTimeAspect {
                 index++
                 if (!found) {
                     if (index == parts.size) {
-                        parts[ind] += String.format(" %d / %d ns / %d ns", total, sum, avg)
+                        parts[ind] += " actions: $totalCalls | avg: $avgTimeOnAction ns | total: $totalCalls ns"
                     }
                     val newTree = Tree(parts[ind])
                     curTree.children.add(newTree)
