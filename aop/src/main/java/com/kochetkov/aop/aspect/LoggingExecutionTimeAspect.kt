@@ -12,7 +12,7 @@ class LoggingExecutionTimeAspect {
     @Around("execution(* com.kochetkov.aop.domain..*.*(..))")
     fun logExecutionTime(joinPoint: ProceedingJoinPoint): Any {
         val startNs = System.nanoTime()
-        val methodName = String.format("%s.%s", joinPoint.signature.declaringTypeName, joinPoint.signature.name)
+        val methodName = "${joinPoint.signature.declaringTypeName}.${joinPoint.signature.name}"
         val result = joinPoint.proceed(joinPoint.args)
         if (!executions.containsKey(methodName)) {
             executions[methodName] = ArrayList()
