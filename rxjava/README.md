@@ -49,7 +49,7 @@ Product(name='korm', value=10.0, currency=RUB)
 Product(name='lapsha', value=357.1428571428571, currency=RUB)
 Product(name='pelmeni', value=4545.454545454546, currency=RUB)
 
-curl -X GET http://localhost:8080/product?id\=2                                           ✔  10320  23:45:48
+curl -X GET http://localhost:8080/product?id\=2                                         
 Product(name='korm', value=0.14, currency=USD)
 Product(name='lapsha', value=5.0, currency=USD)
 Product(name='pelmeni', value=63.63636363636365, currency=USD)
